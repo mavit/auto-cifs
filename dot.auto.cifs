@@ -1,0 +1,9 @@
+# Example ~/.auto.cifs file. Peter Oliver, 2001-09-30
+# Order is important!
+#
+# //host-one password-for-host-one user
+# //host-one password-for-other-users-on-host-one
+# //host-two password-for-host-two
+# *          password-for-all-other-hosts # if you use it, this line must come
+                                          # last. Use this if you belong to an
+                                          # NT Domain.

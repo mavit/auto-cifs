@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-GB" lang="en-GB">
+
+<head>
+<title>auto.cifs</title>
+<link rel="StyleSheet" href="/peter.css" type="text/css" />
+<link rel="Start" href="/" title="Homepage for Peter D. Oliver" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+</head>
+
+<body>
+
+<div>
+
+<h1>auto.cifs</h1>
+
+</div><div>
+
+<p><dfn>auto.cifs</dfn> is a Perl script that dynamically produces
+automount maps for mounting CIFS shares (also called SMB shares and
+Windows shared drives) on demand with Samba on Linux. This means that
+you can do things like <kbd>ls&nbsp;/cifs/myhost:myshare:user</kbd> and
+you'll see the contents of <cite>\\myhost\myshare</cite>. In other
+words, this works a bit like <cite>Network Neighbourhood</cite> in
+Microsoft Windows. No manual mounting is needed.</p>
+
+<p>This page describes version 1.1.0 of auto.cifs.</p>
+
+</div><div>
+
+<h2>Requirements</h2>
+
+<p>
+<a href="http://www.perl.com/">Perl</a>, <a
+href="http://samba.org/">Samba</a>, <a
+href="http://ftp.kernel.org/pub/linux/daemons/autofs/">autofs</a>, and a Linux
+kernel that has support for automounting compiled in. You probably have
+all of these things already.
+</p>
+
+</div><div>
+
+<h2>Installation</h2>
+
+<ol><li>
+Place <a href="auto.cifs">auto.cifs</a> in <cite>/etc</cite> and make it
+executable with <kbd>chmod&nbsp;a+x&nbsp;/etc/auto.cifs</kbd>
+</li><li>
+Add the line <code>/cifs&nbsp;/etc/auto.cifs</code> to <cite>/etc/auto.master</cite>
+</li><li>
+Restart the automounter with <kbd>/etc/rc.d/init.d/autofs&nbsp;restart</kbd>
+(or whatever the equivalent is for your Linux distribution).
+</li></ol>
+
+</div><div>
+
+<h2>Configuration</h2>
+
+<p>
+If you only access shares that don't need a password, you can skip this
+step.  Otherwise, you'll need to put a file called <a
+href="dot.auto.cifs">.auto.cifs</a> in your home directory and do
+<kbd>chmod&nbsp;go-rw&nbsp;~/.auto.cifs</kbd> to make sure others can't access
+it. This file is used to tell auto.cifs what password it should use to
+log on to a given share. If the file doesn't exist, or doesn't contain an
+entry for a given share, a guest login will be attepted instead. Edit the example file as necessary.</p>
+
+</div><div>
+
+<h2>Usage</h2>
+
+<ul>
+    <li>
+        <cite>/cifs/host:share</cite> - guest shares.
+    </li>
+    <li>
+        <cite>/cifs/host:share:user</cite> - shares with a particular username.
+    </li>
+    <li>
+        <cite>/cifs/host:share:localuser:remoteuser</cite> - shares where the username on the remote host is different to that on the local host.
+    </li>
+</ul>
+<p>Just treat <cite>/cifs/host:share</cite> as an ordinary directory. It will
+magically pop into existence as soon as you try to use it. If it
+doesn't, you might want to check <cite>/var/log/messages</cite> for errors.
+</p>
+
+<p>Note that if you specify a local username that isn't yours, it'll go
+ahead and mount the filesystem anyway if it can, but you won't be able
+to read from it.</p>
+
+</div><div>
+
+<h2>Licence</h2>
+
+<p>auto.cifs is made available under the <a href="http://www.gnu.org/copyleft/gpl.html"><acronym title="GNU's Not Unix">GNU</acronym> <abbr title="General Public Licence">GPL</abbr></a>, version 2.</p>
+
+</div><div class="end"><p>
+Last updated: 2001-09-30
+<br /><a href="/">Back to home</a>
+</p>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-4711786-1");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+</body>
+</html>
