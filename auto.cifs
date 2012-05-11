@@ -17,6 +17,7 @@
 #    http://www.opensource.org/licenses/gpl-license.html
 #
 #    History:
+#    1.2.1: Mode should be octal.
 #    1.2.0: Now uses cifs filesystem, not smbfs.
 #           Escape all non-word characters in share names.
 #           Log when credentials file can't be read.
@@ -89,8 +90,8 @@ if ( $localuser ) {
 		}
 		if ( $password ) {
 		    # STDERR gets logged to syslog by recent versions of autofs.
-		    print STDERR "$0: `$ARGV[0]' mounted using `-fstype=cifs,file_mode=700,dir_mode=700,uid=$uid,gid=$gid,username=$remoteuser,password=* ://$host/$share'\n";
-		    print STDOUT "-fstype=cifs,file_mode=700,dir_mode=700,uid=$uid,gid=$gid,username=$remoteuser,password=$password ://$host/$share\n";
+		    print STDERR "$0: `$ARGV[0]' mounted using `-fstype=cifs,file_mode=0700,dir_mode=0700,uid=$uid,gid=$gid,username=$remoteuser,password=* ://$host/$share'\n";
+		    print STDOUT "-fstype=cifs,file_mode=0700,dir_mode=0700,uid=$uid,gid=$gid,username=$remoteuser,password=$password ://$host/$share\n";
 		    exit;
 		}
 	    }
