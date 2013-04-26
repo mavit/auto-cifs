@@ -90,8 +90,8 @@ if ( $localuser ) {
 		}
 		if ( $password ) {
 		    # STDERR gets logged to syslog by recent versions of autofs.
-		    print STDERR "$0: `$ARGV[0]' mounted using `-fstype=cifs,file_mode=0700,dir_mode=0700,uid=$uid,gid=$gid,username=$remoteuser,password=* ://$host/$share'\n";
-		    print STDOUT "-fstype=cifs,file_mode=0700,dir_mode=0700,uid=$uid,gid=$gid,username=$remoteuser,password=$password ://$host/$share\n";
+		    print STDERR "$0: `$ARGV[0]' mounted using `-fstype=cifs,file_mode=0700,dir_mode=0700,uid=$uid,gid=$gid,sec=krb5,cruid=$uid ://$host/$share'\n";
+		    print STDOUT "-fstype=cifs,file_mode=0700,dir_mode=0700,uid=$uid,gid=$gid,sec=krb5,cruid=$uid ://$host/$share\n";
 		    exit;
 		}
 	    }
